@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter_navDrawer;
 
+    private PopupWindow pwindo;
+    private ListView list_uvs;
+
     private ControllerFragment controllerFragment = new ControllerFragment();
     private MissionsFragment missionsFragment = new MissionsFragment();
 
@@ -618,31 +621,7 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
     }
 
 
-    private PopupWindow pwindo;
 
-
-    ListView list_uvs;
-    String[] itemname ={
-            "Safari",
-            "Camera",
-            "Global",
-            "FireFox",
-            "UC Browser",
-            "Android Folder",
-            "VLC Player",
-            "Cold War"
-    };
-
-    Integer[] imgid={
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-            R.mipmap.ic_marker_quad,
-    };
 
     private void initiatePopupWindowUvList(View anchorView) {
         View popupView = getLayoutInflater().inflate(R.layout.screen_popup, null); //get popup view
