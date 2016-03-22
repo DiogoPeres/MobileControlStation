@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
     private TypedArray navMenuIcons;
 
     private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
+    private NavDrawerListAdapter adapter_navDrawer;
 
     private ControllerFragment controllerFragment = new ControllerFragment();
     private MissionsFragment missionsFragment = new MissionsFragment();
@@ -233,9 +233,9 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list_uvs adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(),
+        adapter_navDrawer = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
-        mDrawerList.setAdapter(adapter);
+        mDrawerList.setAdapter(adapter_navDrawer);
 
         // enabling action bar app icon and behaving it as toggle button
         //getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -523,11 +523,11 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
 //    }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(controllerFragment, "CONTROLLER");
-        adapter.addFragment(missionsFragment, "MISSIONS");
+        ViewPagerAdapter adapter_viewPager = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter_viewPager.addFragment(controllerFragment, "CONTROLLER");
+        adapter_viewPager.addFragment(missionsFragment, "MISSIONS");
 
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter_viewPager);
     }
 
 
@@ -594,15 +594,12 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
 
     public void addUV(UV uv){
         uv_list.add(uv);
-
-
-        navDrawerItems.get(0).setCount("" + uv_list.size());
-        adapter.notifyDataSetChanged();
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mDrawerList.setAdapter(adapter);
+                navDrawerItems.get(0).setCount("" + uv_list.size());
+                adapter_navDrawer.notifyDataSetChanged();
+                mDrawerList.setAdapter(adapter_navDrawer);
             }
         });
     }
@@ -666,24 +663,27 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
         /*popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
                 location[0], location[1] + anchorView.getHeight());*/
 
-        pwindo = new PopupWindow(popupView,
-                WindowManager.LayoutParams.WRAP_CONTENT, size.y-size.y/6); //create window with custom size
+//        pwindo = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, size.y-size.y/6); //create window with custom size
+        pwindo = new PopupWindow(popupView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT); //create window with custom size
         pwindo.setFocusable(true);// If the PopupWindow should be focusable
         pwindo.setBackgroundDrawable(new ColorDrawable());// If you need the PopupWindow to dismiss when when touched outside
         pwindo.showAtLocation(anchorView, Gravity.CENTER,
                 0, 0);
 
-        UVListAdapter adapter=new UVListAdapter(this, itemname, imgid); //create list_uvs adapter
+
+
+        final UVListAdapter adapter_uvList=new UVListAdapter(this, uv_list); //create list_uvs adapter
         list_uvs =(ListView)popupView.findViewById(R.id.list); //find list_uvs in xml
-        list_uvs.setAdapter(adapter);   //set adapter
+        list_uvs.setAdapter(adapter_uvList);   //set adapter
         list_uvs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // TODO Auto-generated method stub
-                String Slecteditem = itemname[+position];
-                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+                uv_selected = (UV) adapter_uvList.getItem(position);
+                pwindo.dismiss();
+                //Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
 
             }
         });
