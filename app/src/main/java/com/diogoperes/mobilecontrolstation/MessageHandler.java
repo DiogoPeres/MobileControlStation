@@ -130,7 +130,13 @@ public class MessageHandler {
     }
 
     private void setUVType(int type) {
-        switch (type) {
+        if(type>=0 && type<=27 && Type.getByIndex(type)!=null){
+            uv.setType(Type.getByIndex(type));
+        }else{
+            uv.setType(Type.UNDEFINED);
+        }
+
+        /*switch (type) {
             case 0: //Generic micro air vehicle
                 uv.setType(Type.MAV_TYPE_GENERIC);
                 break;
@@ -216,7 +222,7 @@ public class MessageHandler {
                 uv.setType(Type.MAV_TYPE_ADSB);
                 break;
 
-        }
+        }*/
     }
 
     public boolean is_selected(){

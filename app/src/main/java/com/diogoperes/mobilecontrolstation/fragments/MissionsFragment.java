@@ -134,7 +134,7 @@ public class MissionsFragment extends Fragment {
                             .position(newLocationCoordinates)
                             .title("Thor" + markerIndex++)
                             .anchor(0.5f, 0.5f)
-                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker_quad))
+                            .icon(BitmapDescriptorFactory.fromResource(uv.getType().getIcon()))
                             .rotation(rotation));
 
                     uv.getMarkers_list().add(newLocationMarker);
