@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
     private UV uv_selected;
     private ClientConnection clientConnection;
     private MessageSender messageSender;
-    private UpdateGuiThread updateGuiThread;
+
 
 
     @Override
@@ -127,8 +127,7 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
         //viewPager.requestFocus();
 
 
-        //uv = new UV();
-        updateGuiThread = new UpdateGuiThread(this);
+
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -584,9 +583,7 @@ public class MainActivity extends AppCompatActivity /*implements OnMapReadyCallb
         return clientConnection;
     }
 
-    public UpdateGuiThread getUpdateGuiThread() {
-        return updateGuiThread;
-    }
+
 
     public ArrayList<UV> getUv_list() {
         return uv_list;

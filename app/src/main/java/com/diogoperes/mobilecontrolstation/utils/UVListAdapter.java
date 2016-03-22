@@ -85,7 +85,8 @@ public class UVListAdapter extends BaseAdapter /*extends ArrayAdapter<String>*/{
         } else
             holder=(ViewHolder)vi.getTag();
         if(data.size()<=0){
-            holder.txtTitle.setText("No Data");
+            holder.txtTitle.setText("No UVs Conected");
+            holder.txtSelected.setVisibility(View.GONE);
 
         }else{
             /***** Get each Model object from Arraylist ********/
