@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/disconnectButton"
+        android:background="#960e09"
+        android:text=" "
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1ec101"
+        android:text="ARM"
+        android:id="@+id/armButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp">
+
+        <com.diogoperes.mobilecontrolstation.utils.JoystickView
+            android:id="@+id/joystickViewLeft"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"/>
+
+        <com.diogoperes.mobilecontrolstation.utils.JoystickView
+            android:id="@+id/joystickViewRight"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/altitude_textView"
+        android:textSize="30dp"
+        android:textColor="#15068b"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/armButton"
+        android:text="@string/altitude"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/altitude_info_textView"
+        android:textSize="30dp"
+        android:textColor="#15068b"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/altitude_textView" />
+
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Mode: "
+        android:id="@+id/modeTextView"
+        android:layout_alignTop="@+id/armButton"
+        android:layout_toEndOf="@+id/armButton"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="STABILIZED"
+        android:id="@+id/modeIDTextView"
+        android:layout_alignTop="@+id/modeTextView"
+        android:layout_toEndOf="@+id/modeTextView"/> -->
+
+</RelativeLayout>
